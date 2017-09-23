@@ -1,4 +1,5 @@
 require "./lib/guess"
+require "./lib/card"
 
 class Round
 
@@ -8,10 +9,11 @@ class Round
     @deck = deck
     @guesses = []
     @number_correct = 0
+    @current_card = 0
   end
 
   def current_card
-    @deck.cards.first
+    @deck.cards[@current_card]
   end
 
   def record_guess(response)
@@ -22,6 +24,11 @@ class Round
     else
       @number_correct
     end
+    @current_card += 1
+  end
+
+  def percent_correct
+  (@number_correct.to_f / deck.cards.length * 100).to_i
   end
 
 end
