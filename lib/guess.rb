@@ -8,11 +8,7 @@ class Guess
   end
 
   def correct?
-    if @guess == @card.answer
-      true
-    else
-      false
-    end
+    @guess == @card.answer
   end
 
   def feedback
