@@ -3,6 +3,7 @@ require 'minitest/autorun'
 require "./lib/guess"
 require './lib/card'
 require './lib/deck'
+require "./lib/round"
 
 class CardTest < Minitest::Test
 
@@ -44,6 +45,15 @@ class CardTest < Minitest::Test
 
     assert_instance_of Array, deck.cards
     assert_equal 3, deck.count
+  end
+
+  def test_round_holds_and_has_access_to_deck
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+
+    assert_equal [], round.deck
   end
 
 end
