@@ -1,6 +1,7 @@
 require "./lib/guess"
 require "./lib/card"
 
+
 class Round
 
   attr_reader :deck, :guesses, :number_correct
@@ -28,7 +29,24 @@ class Round
   end
 
   def percent_correct
-  (@number_correct.to_f / deck.cards.length * 100).to_i
+  (@number_correct.to_f / deck.cards.length * 100).to_ik
+  end
+
+  def start
+    puts "Welcome! You're playing with #{deck.cards.count} cards"
+    sleep 1.0
+    puts "---------------------------------"
+    sleep 1.0
+    deck.cards.each do |card|
+    puts "This is card number #{@current_card + 1} out of #{deck.cards.count}"
+    sleep 1.0
+    puts "Question: #{card.question}"
+    input = gets.chomp
+    record_guess(input)
+      puts "#{guesses.last.feedback}"
+      sleep 1.0
+    end
+
   end
 
 end
