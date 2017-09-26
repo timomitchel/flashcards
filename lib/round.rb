@@ -29,24 +29,26 @@ class Round
   end
 
   def percent_correct
-  (@number_correct.to_f / deck.cards.length * 100).to_ik
+  (@number_correct.to_f / deck.cards.length * 100).to_i
   end
 
   def start
     puts "Welcome! You're playing with #{deck.cards.count} cards"
-    sleep 1.0
+    sleep 1.5
     puts "---------------------------------"
-    sleep 1.0
+    sleep 1.5
     deck.cards.each do |card|
     puts "This is card number #{@current_card + 1} out of #{deck.cards.count}"
-    sleep 1.0
+    sleep 1.5
     puts "Question: #{card.question}"
     input = gets.chomp
     record_guess(input)
       puts "#{guesses.last.feedback}"
-      sleep 1.0
+      sleep 1.5
     end
-
+    puts "******* Game over! *******"
+    sleep 1.5
+    puts "You had #{@number_correct} correct guesses out of #{deck.cards.count} for a score of #{percent_correct}"
   end
 
 end
