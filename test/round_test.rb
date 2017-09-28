@@ -26,12 +26,14 @@ class RoundTest < Minitest::Test
     round = Round.new(deck)
 
     round.record_guess("Juneau")
+
     assert_equal 1, round.guesses.count
     assert_equal 'Correct!', round.guesses.first.feedback
     assert_equal 1, round.number_correct
     assert_equal card_2, round.current_card
 
     round.record_guess("2")
+    
     assert_equal 2, round.guesses.count
     assert_equal 'Incorrect.', round.guesses.last.feedback
     assert_equal 1, round.number_correct
