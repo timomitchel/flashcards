@@ -1,15 +1,16 @@
 require 'minitest/autorun'
+require 'minitest/pride'
 require "./lib/guess"
 require './lib/card'
 require './lib/deck'
 require "./lib/round"
-require 'minitest/pride'
+
 
 class CardTest < Minitest::Test
 
   def test_card_class_exists
     card = Card.new("What is the capital of Alaska?", 'Juneau')
-    
+
     assert_instance_of Card, card
   end
 

@@ -1,9 +1,10 @@
 require 'minitest/autorun'
+require 'minitest/pride'
 require "./lib/guess"
 require './lib/card'
 require './lib/deck'
 require "./lib/round"
-require 'minitest/pride'
+
 
 class DeckTest < Minitest::Test
 

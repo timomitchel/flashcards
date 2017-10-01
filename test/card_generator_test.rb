@@ -1,4 +1,3 @@
-require 'pry'
 require 'minitest/autorun'
 require 'minitest/pride'
 require "./lib/guess"
@@ -9,7 +8,7 @@ require "./lib/card_generator"
 
 class CardGeneratorTest < Minitest::Test
 
-  def test_loads_file_into_array
+  def test_loads_file_into_array_with_questions_and_answers
     filename = "./lib/cards.txt"
     cards = CardGenerator.new(filename).loader
 

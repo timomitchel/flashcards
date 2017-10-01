@@ -1,6 +1,3 @@
-require 'pry'
-
-
 class CardGenerator
 
   def initialize(filename)
@@ -13,4 +10,5 @@ class CardGenerator
         Card.new(question, answer)
     end
   end
+  
 end
