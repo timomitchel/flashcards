@@ -14,7 +14,7 @@ class CardGeneratorTest < Minitest::Test
 
     assert_instance_of Array, cards
     assert_equal 'What is 5 + 5?', cards.first.question
-    assert_equal 'Justin bieber', cards.last.answer
+    assert_equal 'justin bieber', cards.last.answer
   end
 
 end

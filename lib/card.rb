@@ -4,7 +4,7 @@ class Card
 
   def initialize(question, answer)
     @question = question
-    @answer = answer
+    @answer = answer.downcase
   end
 
 end

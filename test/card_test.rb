@@ -18,7 +18,7 @@ class CardTest < Minitest::Test
     card = Card.new("What is the capital of Alaska?", 'Juneau')
 
     assert_equal "What is the capital of Alaska?", card.question
-    assert_equal 'Juneau', card.answer
+    assert_equal 'juneau', card.answer
   end
 
 end

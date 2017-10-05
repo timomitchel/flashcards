@@ -16,6 +16,9 @@ class DeckTest < Minitest::Test
 
     assert_instance_of Array, deck.cards
     assert_equal 3, deck.count
+    assert_equal "juneau", deck.cards[0].answer
+    assert_equal 'What is the capital of Alaska?', deck.cards[0].question
+    assert_equal 'north north west', deck.cards[2].answer
   end
 
 end

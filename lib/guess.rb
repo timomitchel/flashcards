@@ -4,9 +4,8 @@ class Guess
   attr_reader :guess, :card
 
   def initialize(guess, card)
-    @guess = guess
+    @guess = guess.downcase
     @card = card
-    @response = guess
   end
 
   def correct?
@@ -20,5 +19,5 @@ class Guess
       'Incorrect.'
     end
   end
-  
+
 end
