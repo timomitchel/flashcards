@@ -4,6 +4,7 @@ require "./lib/guess"
 require './lib/card'
 require './lib/deck'
 require "./lib/round"
+require "./lib/guess"
 
 class RoundTest < Minitest::Test
 
@@ -64,6 +65,34 @@ class RoundTest < Minitest::Test
     assert_equal 'yes', round.deck.cards[2].answer
     assert_nil nil, round.guesses.last.guess
     assert_equal 0, round.number_correct
+  end
+
+  def test_dynamic_sleep_ability
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    card_3 = Card.new("Is Taylor Swift the best artist of our era?", "yes")
+    deck = Deck.new([card_1, card_2, card_3])
+    round = Round.new(deck)
+
+    assert_equal 1, round.delay_output(1)
+    assert_equal 2, round.delay_output(2)
+  end
+
+  def test_check_guess
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+    guess = Guess.new('Juneau', round.current_card)
+
+    assert_equal 1, round.check_guess(guess)
+    assert_equal 1, round.number_correct
+
+    round2 = Round.new(deck)
+    guess2 = Guess.new('Anchorage', round2.current_card)
+
+    assert_nil round2.check_guess(guess2)
+    assert_equal 0, round2.number_correct
   end
 
 end

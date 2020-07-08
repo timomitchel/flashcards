@@ -9,49 +9,57 @@ class Round
     @deck = deck
     @guesses = []
     @number_correct = 0
-    @current_card = 0
+    @card_position = 0
   end
 
   def current_card
-    @deck.cards[@current_card]
+    @deck.cards[@card_position]
+  end
+
+  def delay_output(seconds)
+    sleep seconds
+  end
+
+  def check_guess(guess)
+    @number_correct += 1 if guess.correct?
   end
 
   def record_guess(response)
     @guesses << Guess.new(response.to_s, current_card)
-    guess = @guesses.last
-    if guess.correct?
-      @number_correct += 1
-    else
-      @number_correct
-    end
-    @current_card += 1
+    guess =  @guesses.last
+    check_guess(guess)
+    @card_position += 1
   end
 
   def percent_correct
-  (@number_correct.to_f / deck.cards.length * 100).to_i
+    (@number_correct.to_f / deck.count * 100).to_i
   end
 
   def start
-    puts "Welcome! You're playing with #{deck.cards.count} cards"
-    sleep 1.5
+    puts "Welcome! You're playing with #{deck.count} cards"
+    delay_output(1)
     puts "---------------------------------"
-    sleep 1.5
-    game
+    delay_output(1)
+    start_game
     puts "******* Game over! *******"
-    sleep 1.5
-    puts "You had #{@number_correct} correct guesses out of #{deck.cards.count} for a score of #{percent_correct}"
+    delay_output(1)
+    puts "You had #{@number_correct} correct guesses out of #{deck.count} for a score of #{percent_correct}"
   end
 
-  def game
+  def start_game
     deck.cards.each do |card|
-    puts "This is card number #{@current_card + 1} out of #{deck.cards.count}"
-    sleep 1.5
-    puts "Question: #{card.question}"
-    input = gets.chomp
-    record_guess(input)
+      puts "This is card number #{@card_position + 1} out of #{deck.count}"
+      delay_output(1)
+      puts "Question: #{card.question}"
+      record_guess(input)
       puts "#{guesses.last.feedback}"
-      sleep 1.5
-    end
+      delay_output(1)
+      end
+  end
+
+  def input
+    # More on why I do this with the mocks and stubs lesson
+    gets.chomp
   end
 
 end
